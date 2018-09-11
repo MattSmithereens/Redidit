@@ -12,15 +12,17 @@ import poop from './images/poop.svg'
 
 const styles = theme => ({
   root: {
+
     marginTop: '5%',
     height: '100%',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
-    overflow: 'hidden',
-    backgroundColor: theme.palette.background.paper,
+    overflow: 'hidden'
+    // backgroundColor: theme.palette.background.paper,
   },
   gridList: {
+    
     width: '80%',
     height: '100%',
   },
