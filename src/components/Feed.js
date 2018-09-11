@@ -22,7 +22,7 @@ const styles = theme => ({
     // backgroundColor: theme.palette.background.paper,
   },
   gridList: {
-    
+
     width: '80%',
     height: '100%',
   },
@@ -83,21 +83,6 @@ const styles = theme => ({
        <GridList cellHeight={200} spacing={1} className={classes.gridList}>
          {tileData.map(tile => (
            <Card />
-           // <GridListTile key={tile.img} cols={tile.featured ? 2 : 1} rows={tile.featured ? 2 : 1}>
-           //   <img src={tile.img} alt={tile.title} />
-           //   <GridListTileBar
-           //     title={tile.title}
-           //     titlePosition="top"
-           //     actionIcon={
-           //       <IconButton className={classes.icon}>
-           //         <StarBorderIcon />
-           //         <img src={poop} alt="poop" />
-           //       </IconButton>
-           //     }
-           //     actionPosition="left"
-           //     className={classes.titleBar}
-           //   />
-           // </GridListTile>
          ))}
        </GridList>
      </div>

@@ -130,7 +130,6 @@ class RecipeReviewCard extends React.Component {
               <FavoriteIcon color={color} onClick={this.handleLike} />
             </Badge>
           </IconButton>
-
           <IconButton>
             <Badge badgeContent={this.state.dislikeCount} color="primary" classes={{ badge: classes.badge }}>
               <ThumbDown color={poopColor} onClick={this.handleDislike}/>
