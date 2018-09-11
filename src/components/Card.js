@@ -16,11 +16,15 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import ThumbDown from '@material-ui/icons/ThumbDown';
 import image from './images/doggo.jpg';
+import poop from './images/poop.svg'
+import Badge from '@material-ui/core/Badge';
 
 
 const styles = theme => ({
   card: {
+    margin: '2%',
     maxWidth: 400,
   },
   media: {
@@ -49,7 +53,34 @@ const styles = theme => ({
 });
 
 class RecipeReviewCard extends React.Component {
-  state = { expanded: false };
+  constructor(props) {
+    super(props)
+    this.state = {
+     expanded: false,
+     liked: false,
+     disliked: false,
+     likeCount: 0,
+     dislikeCount: 0
+   };
+   this.handleLike = this.handleLike.bind(this)
+   this.handleDislike = this.handleDislike.bind(this)
+ }
+
+   handleLike() {
+     let newLikeCount = this.state.likeCount + 1;
+     this.setState({likeCount: newLikeCount});
+     this.setState(prevState => ({
+       liked: !prevState.liked
+     }));
+   };
+
+   handleDislike() {
+     let newDislikeCount = this.state.dislikeCount + 1;
+     this.setState({dislikeCount: newDislikeCount});
+     this.setState(prevState => ({
+       disliked: !prevState.disliked
+     }));
+   };
 
   handleExpandClick = () => {
     this.setState(state => ({ expanded: !state.expanded }));
@@ -57,13 +88,21 @@ class RecipeReviewCard extends React.Component {
 
   render() {
     const { classes } = this.props;
+    let color = "inheret";
+    let poopColor = "inheret"
+    if (this.state.liked){
+      color="secondary";
+    }
+    if (this.state.disliked){
+      poopColor="secondary";
+    }
 
     return (
       <Card className={classes.card}>
         <CardHeader
           avatar={
             <Avatar aria-label="Recipe" className={classes.avatar}>
-              R
+              FU
             </Avatar>
           }
           action={
@@ -87,11 +126,17 @@ class RecipeReviewCard extends React.Component {
         </CardContent>
         <CardActions className={classes.actions} disableActionSpacing>
           <IconButton aria-label="Add to favorites">
-            <FavoriteIcon />
+            <Badge badgeContent={this.state.likeCount} color="primary" classes={{ badge: classes.badge }}>
+              <FavoriteIcon color={color} onClick={this.handleLike} />
+            </Badge>
           </IconButton>
-          <IconButton aria-label="Share">
-            <ShareIcon />
+
+          <IconButton>
+            <Badge badgeContent={this.state.dislikeCount} color="primary" classes={{ badge: classes.badge }}>
+              <ThumbDown color={poopColor} onClick={this.handleDislike}/>
+            </Badge>
           </IconButton>
+
           <IconButton
             className={classnames(classes.expand, {
               [classes.expandOpen]: this.state.expanded,
